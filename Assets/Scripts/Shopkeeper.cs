@@ -11,15 +11,13 @@ public class Shopkeeper : MonoBehaviour, IUsableActor
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private GameObject nameObject;
 
+    private Inventory inventory;
+
     void Start()
     {
+        inventory = GetComponent<Inventory>();
         nameText.text = m_UsableName;
         HideName();
-    }
-
-    void Update()
-    {
-        
     }
 
     public void ShowName()
@@ -34,6 +32,16 @@ public class Shopkeeper : MonoBehaviour, IUsableActor
 
     public void Action()
     {
-        Debug.Log("Open Shop");
+        UIHandler.instance.OpenClothesShop(inventory.items, this);
+    }
+
+    public void RemoveItemFromStore(Item removedItem)
+    {
+        inventory.items.Remove(removedItem);
+    }
+
+    public void AddItemToStore(Item removedItem)
+    {
+        inventory.items.Add(removedItem);
     }
 }

@@ -17,11 +17,6 @@ public class ClothingChangeBooth : MonoBehaviour, IUsableActor
         HideName();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void ShowName()
     {
         nameObject.SetActive(true);
@@ -34,6 +29,6 @@ public class ClothingChangeBooth : MonoBehaviour, IUsableActor
 
     public void Action()
     {
-        Debug.Log("Open Clothes UI");
+        UIHandler.instance.OpenChangingRoom();
     }
 }

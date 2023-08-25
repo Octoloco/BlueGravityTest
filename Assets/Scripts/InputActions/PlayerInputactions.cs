@@ -53,6 +53,15 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d1e15c9-2af9-41ec-9633-4402409721eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
                     ""action"": ""ScrollUsableSelection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f35ed99-5c6e-4008-8079-06cbf3f0e97e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
         m_Player_ScrollUsableSelection = m_Player.FindAction("ScrollUsableSelection", throwIfNotFound: true);
+        m_Player_ExitGame = m_Player.FindAction("ExitGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +226,7 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Use;
     private readonly InputAction m_Player_ScrollUsableSelection;
+    private readonly InputAction m_Player_ExitGame;
     public struct PlayerActions
     {
         private @PlayerInputactions m_Wrapper;
@@ -212,6 +234,7 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Use => m_Wrapper.m_Player_Use;
         public InputAction @ScrollUsableSelection => m_Wrapper.m_Player_ScrollUsableSelection;
+        public InputAction @ExitGame => m_Wrapper.m_Player_ExitGame;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,6 +253,9 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
                 @ScrollUsableSelection.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollUsableSelection;
                 @ScrollUsableSelection.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollUsableSelection;
                 @ScrollUsableSelection.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollUsableSelection;
+                @ExitGame.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitGame;
+                @ExitGame.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitGame;
+                @ExitGame.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitGame;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -243,6 +269,9 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
                 @ScrollUsableSelection.started += instance.OnScrollUsableSelection;
                 @ScrollUsableSelection.performed += instance.OnScrollUsableSelection;
                 @ScrollUsableSelection.canceled += instance.OnScrollUsableSelection;
+                @ExitGame.started += instance.OnExitGame;
+                @ExitGame.performed += instance.OnExitGame;
+                @ExitGame.canceled += instance.OnExitGame;
             }
         }
     }
@@ -252,5 +281,6 @@ public partial class @PlayerInputactions : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnScrollUsableSelection(InputAction.CallbackContext context);
+        void OnExitGame(InputAction.CallbackContext context);
     }
 }

@@ -6,22 +6,38 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
+    static public PlayerActions instance;
+
     [SerializeField] private float speed;
     [SerializeField] private SpriteRenderer useInputSprite;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private SpriteRenderer topSprite;
+    [SerializeField] private SpriteRenderer bottomSprite;
+    [SerializeField] private SpriteRenderer shoesSprite;
 
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private PlayerInputactions playerInputActions;
-
     private int usableInRangeIndex;
     private List<IUsableActor> usablesInRangeList = new List<IUsableActor>();
+    private bool isInMenu;
+
+    public Inventory inventory;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -29,6 +45,55 @@ public class Player : MonoBehaviour
         playerInputActions.Enable();
         playerInputActions.Player.Use.performed += Use;
         playerInputActions.Player.ScrollUsableSelection.performed += ScrollUse;
+        playerInputActions.Player.ExitGame.performed += ExitGame;
+    }
+
+    public void ExitGame(InputAction.CallbackContext context)
+    {
+        Application.Quit();
+    }
+
+    public void UpdateClothes()
+    {
+        playerAnimator.SetInteger("TopColor", inventory.wornTop.itemIndex);
+        playerAnimator.SetInteger("BottomColor", inventory.wornBottom.itemIndex);
+        playerAnimator.SetInteger("ShoesColor", inventory.wornShoes.itemIndex);
+        playerAnimator.SetTrigger("Change");
+    }
+
+    public void SubtractMoney(int price)
+    {
+        inventory.money -= price;
+    }
+
+    public void AddMoney(int price)
+    {
+        inventory.money += price;
+    }
+
+    public bool CanBuy(int price)
+    {
+        if (inventory.money - price >= 0)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public void AddToInventory(Item newItem)
+    {
+        inventory.items.Add(newItem);
+    }
+
+    public void RemoveFromInventory(Item soldItem)
+    {
+        inventory.items.Remove(soldItem);
+    }
+
+    public void PlayerIsInMenu(bool inMenu)
+    {
+        isInMenu = inMenu;
     }
 
     private void Moved()
@@ -45,6 +110,7 @@ public class Player : MonoBehaviour
         {
 
             playerAnimator.SetBool("walking", true);
+            
 
 
             if (dir.x > 0)
@@ -73,9 +139,16 @@ public class Player : MonoBehaviour
 
     private void Use(InputAction.CallbackContext context)
     {
-        if (usablesInRangeList.Count > 0)
+        if (!isInMenu)
         {
-            usablesInRangeList[usableInRangeIndex].Action();
+            if (usablesInRangeList.Count > 0)
+            {
+                usablesInRangeList[usableInRangeIndex].Action();
+            }
+        }
+        else
+        {
+            UIHandler.instance.CloseAllWindows();
         }
     }
 
@@ -83,6 +156,7 @@ public class Player : MonoBehaviour
     {
         if (usablesInRangeList.Count > 1)
         {
+            usablesInRangeList[usableInRangeIndex].HideName();
             usableInRangeIndex++;
 
             if (usableInRangeIndex >= usablesInRangeList.Count)
@@ -90,14 +164,15 @@ public class Player : MonoBehaviour
                 usableInRangeIndex = 0;
             }
         }
-        Debug.Log("This one selected: " + usablesInRangeList[usableInRangeIndex]);
-        //Update who is selected
+        else
+        {
+            return;
+        }
+
+        usablesInRangeList[usableInRangeIndex].ShowName();
+        
     }
 
-    private void MoveCamera()
-    {
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -128,18 +203,22 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        inventory = GetComponent<Inventory>();
     }
 
 
     void Update()
     {
-        MoveCamera();
+
     }
 
     private void FixedUpdate()
     {
-        Moved();
+        if (!isInMenu)
+        {
+            Moved();
+
+        }
     }
 
 }

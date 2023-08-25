@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlackShoesAnim
+  m_Name: YellowTopAnim
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,25 +20,25 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -606696457, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -734438628, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.13333334
-      value: {fileID: -2124160093, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -1887728553, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.26666668
-      value: {fileID: -954587082, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: 1546882963, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.4
-      value: {fileID: -516908338, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -1279342859, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.53333336
-      value: {fileID: 1019689031, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -998573815, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.6666667
-      value: {fileID: 1671615962, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: 1077866393, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.8
-      value: {fileID: 1201369917, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -1054368501, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 0.93333334
-      value: {fileID: 1288813771, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -1592592865, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     - time: 1.05
-      value: {fileID: -606696457, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+      value: {fileID: -734438628, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
     attribute: m_Sprite
-    path: Shoes
+    path: Top
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -49,22 +49,22 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3574509203
+      path: 647256362
       attribute: 0
       script: {fileID: 0}
       typeID: 212
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -606696457, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: -2124160093, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: -954587082, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: -516908338, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: 1019689031, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: 1671615962, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: 1201369917, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: 1288813771, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
-    - {fileID: -606696457, guid: 4d24717fb3876fa418c5dd773dc3304f, type: 3}
+    - {fileID: -734438628, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: -1887728553, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: 1546882963, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: -1279342859, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: -998573815, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: 1077866393, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: -1054368501, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: -1592592865, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
+    - {fileID: -734438628, guid: 2ccf5e3ff6a0ec946b3d733425f7374b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
